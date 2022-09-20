@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
-
-import 'antd/dist/antd.css';
-import './styles/index.scss';
+import App from './App';
+import './styles/index.css';
 
 const elRoot = document.getElementById('root');
 
@@ -11,7 +10,7 @@ if (elRoot) {
   const root = ReactDOM.createRoot(elRoot);
   root.render(
     <React.StrictMode>
-      test
+      <App />
     </React.StrictMode>
   );
 

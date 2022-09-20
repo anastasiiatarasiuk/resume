@@ -1,5 +1,149 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  padding: 20px 0 10px;
+  background: rgb(247, 150, 239);
+  height: 100%;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.photo {
+  width: 350px;
+  height: 350px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.photo img {
+  height: 100%;
+}
+
+.skils {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.skils-title {
+  color: rgb(14, 11, 11);
+}
+
+.skils-list {
+  padding-left: 10px;
+  list-style: none;
+}
+
+.skils-item {
+  color: rgb(126, 14, 231);
+}
+
+.content {
+  padding: 20px 40px 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.projects {
+  width: 100%;
+}
+
+.projects-title {
+  width: 100%;
+}
+
+.projects-list {
+  width: 100%;
+}
+
+.projects-item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.dotted {
+  flex: 1;
+  border-bottom: 1px dotted rgb(250, 204, 250);
+  margin: 4px;
+}
+
+.projects-item_title {
+  color: rgb(248, 16, 217);
+}
+
+.projects-item_title:hover {
+  color: rgb(230, 88, 235);
+  font-weight: bold;
+}
+
+.projects-item_title::after {
+  content: '';
+  position: absolute;
+  letter-spacing: 50%;
+  width: 0;
+  height: 2px;
+  background: transparent;
+  transition: all, 0.4s;
+}
+
+.projects-item_link:hover.projects-item-title::after {
+  width: 100%;
+  color: rgb(13, 253, 173);
+  background-color: rgb(252, 134, 246);
+}
+
+.projects-item_link {
+  color: aquamarine;
+  left: 0;
+  background: plum;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hide-modal {
+  display: none;
+  width: 0;
+  height: 0;
+  z-index: -1;
+}
+
+.modal-content {
+  min-width: 80vh;
+  min-height: 80vh;
+  width: 100vh;
+  height: 100vh;
+  background: rgb(247, 150, 239);
+  border: 1px solid transparent;
+  border-radius: 8px;
+}
+
+.modal-header {
+  display: flex;
+}
+
+.modal-title {
+  flex: 1;
 }
