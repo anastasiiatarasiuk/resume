@@ -1,56 +1,58 @@
 import React from 'react';
-interface ISkilsItem {
+
+interface ISkilItem {
   title: string;
   list: string[];
 }
-const Skils: ISkilsItem[] = [
+
+const SKILS: ISkilItem[] = [
   { title: 'Hard skils', list: ['html', 'css', 'js', 'React'] },
   { title: 'Soft skils', list: ['Agile', 'Scrum'] },
 ];
 // () => {};
-const SkilsComponent: React.FC<ISkilsItem> = ({ title, list }) => {
+const SkilComponent: React.FC<ISkilItem> = ({ title, list }) => {
   return (
     <div className="skils">
-      <h3 className="skils-title">{title}</h3>
+      <h3 className="skils-title title">{title}</h3>
       <ul className="skils-list">
-        {list.map((item) => {
-          return (
-            <li key={item} className="skils-item">
-              {item}
-            </li>
-          );
-        })}
+        {list.map((item) => (
+          <li className="skils-item subtitle" key={item}>
+            {item}
+          </li>
+        ))}
       </ul>
     </div>
   );
 };
+
 interface IProject {
   id: string;
   name: string;
   link: string;
 }
-const PROJECTS: IProject[] = [
-  {
-    id: '1',
-    name: 'Resume',
-    link: 'www.google.com',
-  },
-];
+
 interface IProjectsComponentProps {
   title: string;
-  list: { id: string; name: string; link: string }[];
+  list: IProject[];
 }
+
+const PROJECTS: IProject[] = [];
+
+for (let index = 0; index < new Array(5).length; index += 1) {
+  PROJECTS.push({ id: `${index}`, name: `Resume-v${index + 1}`, link: 'www.google.com' });
+}
+
 const ProjectsComponent: React.FC<IProjectsComponentProps> = ({ title, list }) => {
   return (
     <div className="projects">
-      <h4 className="projects-title">{title}</h4>
+      <h4 className="projects-title title">{title}</h4>
       <ul className="projects-list">
         {list.map(({ id, name, link }) => {
           return (
             <li className="projects-item" key={id}>
-              <span className="projects-item_title">{name}</span>
+              <span className="projects-item_title subtitle">{name}</span>
               <div className="dotted" />
-              <span className="projects-item_link">
+              <span className="projects-item_link subtitle">
                 <a href={`//${link}`}>link</a>
               </span>
             </li>
@@ -60,27 +62,39 @@ const ProjectsComponent: React.FC<IProjectsComponentProps> = ({ title, list }) =
     </div>
   );
 };
-interface IWorks {
+
+interface IWork {
   id: string;
   name: string;
+  description: string;
 }
-const WORKS: IWorks[] = [
-  { id: '1', name: 'Works' },
-  { id: '2', name: 'Works 2' },
-];
+
 interface IWorksComponentProps {
   title: string;
-  list: { id: string; name: string }[];
+  list: IWork[];
 }
+
+const WORKS: IWork[] = [];
+
+for (let index = 0; index < new Array(3).length; index += 1) {
+  WORKS.push({
+    id: `${index}`,
+    name: `work${index + 1}`,
+    description:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil doloremque minus alias in officiis quidem nostrum! Reiciendis natus molestias suscipit?',
+  });
+}
+
 const WorksComponent: React.FC<IWorksComponentProps> = ({ title, list }) => {
   return (
-    <div>
-      <h4 className="works-title">{title}</h4>
-      <ul className="work-list">
-        {list.map(({ id, name }) => {
+    <div className="works">
+      <h4 className="works-title title">{title}</h4>
+      <ul className="works-list">
+        {list.map(({ id, name, description }) => {
           return (
             <li className="works-item" key={id}>
-              {name}
+              <h5 className="works-item_title subtitle">{name}</h5>
+              <p className="description">{description}</p>
             </li>
           );
         })}
@@ -102,6 +116,7 @@ const App: React.FC = () => {
   //   openBtn.onclick = toggleModal;
   //   closeBtn.onclick = toggleModal;
   // </script>
+
   return (
     <div>
       <main className="container">
@@ -112,38 +127,22 @@ const App: React.FC = () => {
               alt="a3702ce6fa1078964310790f66c59bb4.jpj"
             />
           </div>
-          {/* <div className="skils">
-            <h3 className="skils-title">Skils</h3>
-            <ul className="skils-list">
-              <li className="skils-item">Lorem, ipsum dolor.</li>
-              <li className="skils-item">Lorem ipsum, dolor.</li>
-            </ul>
-          </div>  */}
-          {Skils.map(({ title, list }) => {
-            return <SkilsComponent key={title} title={title} list={list} />;
-          })}
+          {SKILS.map(({ title, list }) => (
+            <SkilComponent key={title} title={title} list={list} />
+          ))}
         </section>
         <section className="content">
-          <h1>
-            <b>
-              <em>Tarasiuk Anastasiia</em>
-            </b>
-          </h1>
-          <div>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis odio culpa recusandae
-            praesentium commodi labore cupiditate dolor reiciendis explicabo non? Ipsum eligendi a
-            dolor vel dolorum dolorem harum officiis odit.
-          </div>
-          <div>
-            <ProjectsComponent title={'Projects'} list={PROJECTS} />
-          </div>
+          <h1 className="fio">Tarasiuk Anastasiia</h1>
+          <p className="description">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique repellendus rerum
+            quia iste est itaque ut, libero maxime voluptatibus ullam eum enim. Quia, eos optio
+            aliquid voluptate iste deserunt natus eius voluptas doloribus debitis illo quis adipisci
+            quam dolore nam laboriosam mollitia dolor. Perferendis molestias iure maxime, corporis
+            unde quia.
+          </p>
+          <ProjectsComponent title={'Projects'} list={PROJECTS} />
           <WorksComponent title={'Works'} list={WORKS} />
-          {/* <div>
-            <h4 className="works-title">History work</h4>
-            <ul className="work-lists">
-              <li className="works-item">Lorem, ipsum dolor.</li>
-            </ul>
-          </div> */}
+
           <button id="JS_OPEN_MODAL" type="button">
             open modal
           </button>
